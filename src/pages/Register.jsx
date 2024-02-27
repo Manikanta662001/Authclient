@@ -42,15 +42,18 @@ function Register() {
           <Formik
             initialValues={data}
             validationSchema={validate}
-            onSubmit={async(values) => {
+            onSubmit={async (values) => {
               console.log(values, "REgisterval 11::");
-              httpMethods.post("/register",values).then((result)=>{
-                console.log(result,"53")
-              })
-              .catch((error)=>{
-                console.log(error,"000")
-                alert(error.message)
-              })
+              httpMethods
+                .post("/register", values)
+                .then((result) => {
+                  console.log(result, "53");
+                  alert(result.message);
+                })
+                .catch((error) => {
+                  console.log(error, "000");
+                  alert(error.message);
+                });
             }}
           >
             <Form>
@@ -95,8 +98,8 @@ function Register() {
                   </div>
                 </div>
                 <p className="err_msg">
-                    <ErrorMessage name="password" />
-                  </p>
+                  <ErrorMessage name="password" />
+                </p>
               </div>
               <div className="form_input">
                 <label htmlFor="cpassword">Confirm Password</label>
@@ -115,8 +118,8 @@ function Register() {
                   </div>
                 </div>
                 <p className="err_msg">
-                    <ErrorMessage name="cpassword" />
-                  </p>
+                  <ErrorMessage name="cpassword" />
+                </p>
               </div>
               <button className="btn">Signup</button>
               <p>

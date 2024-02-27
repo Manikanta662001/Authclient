@@ -3,6 +3,8 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { NavLink } from "react-router-dom";
 import * as Yup from "yup";
 import "./mix.css";
+import { httpMethods } from "../api/Service";
+import { setCookie } from "../utils/utils";
 
 function Login() {
   const [passwordShow, setPasswordShow] = useState(false);
@@ -32,6 +34,10 @@ function Login() {
             validationSchema={validate}
             onSubmit={(values) => {
               console.log(values);
+              httpMethods.post("/login", values).then((result) => {
+                console.log(result, "tokenResult");
+                setCookie(result.token, 2);
+              });
             }}
           >
             <Form>
@@ -67,7 +73,9 @@ function Login() {
                   <ErrorMessage name="password" />
                 </p>
               </div>
-              <button className="btn">Login</button>
+              <button className="btn" type="submit">
+                Login
+              </button>
               <p>
                 Don't Have an Account?{" "}
                 <NavLink to={"/register"}>Sign Up</NavLink>
