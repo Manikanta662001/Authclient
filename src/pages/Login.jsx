@@ -34,11 +34,10 @@ function Login() {
             validationSchema={validate}
             onSubmit={(values) => {
               console.log(values);
-              httpMethods.post("/login",values)
-              .then((result)=>{
-                console.log(result,"tokenResult")
-                setCookie(result.token,2)
-              })
+              httpMethods.post("/login", values).then((result) => {
+                console.log(result, "tokenResult");
+                setCookie(result.token, 2);
+              });
             }}
           >
             <Form>
@@ -74,7 +73,9 @@ function Login() {
                   <ErrorMessage name="password" />
                 </p>
               </div>
-              <button className="btn" type="submit">Login</button>
+              <button className="btn" type="submit">
+                Login
+              </button>
               <p>
                 Don't Have an Account?{" "}
                 <NavLink to={"/register"}>Sign Up</NavLink>
