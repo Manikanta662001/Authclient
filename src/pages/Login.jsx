@@ -34,7 +34,7 @@ function Login() {
             validationSchema={validate}
             onSubmit={(values) => {
               console.log(values);
-              httpMethods.post("/login", values).then((result) => {
+              httpMethods.post("user/login", values).then((result) => {
                 console.log(result, "tokenResult");
                 setCookie(result.token, 2);
               });

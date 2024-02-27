@@ -45,7 +45,7 @@ function Register() {
             onSubmit={async (values) => {
               console.log(values, "REgisterval 11::");
               httpMethods
-                .post("/register", values)
+                .post("user/register", values)
                 .then((result) => {
                   console.log(result, "53");
                   alert(result.message);
