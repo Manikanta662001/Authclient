@@ -19,7 +19,7 @@ function Dashboard() {
   }, []);
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Welcome Mr. {currentUser.name}</h1>
+      <h1 style={{ textAlign: "center" }}>Welcome Mr. {currentUser?.name}</h1>
       <div style={{ width: "15%", margin: "auto" }}>
         <img src={man} alt="img" style={{ width: "200px" }} />
       </div>

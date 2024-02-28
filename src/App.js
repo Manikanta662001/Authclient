@@ -5,9 +5,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import { useUserContext } from "./components/authContext/AuthContext";
+import Errorpage from "./pages/Errorpage";
 function App() {
   const userContext = useUserContext();
-  const { currentUser, isLoggedIn } = userContext;
+  const { isLoggedIn } = userContext;
   return (
     <div>
       <Header />
@@ -21,6 +22,7 @@ function App() {
           path="/dashboard"
           element={isLoggedIn ? <Dashboard /> : <Navigate to={"/"} />}
         />
+        <Route path="*" element={<Errorpage/>}/>
       </Routes>
     </div>
   );
