@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import "./mix.css";
 import { httpMethods } from "../api/Service";
 import { setCookie } from "../utils/utils";
+import { useUserContext } from "../components/authContext/AuthContext";
 
 function Login() {
+  const userContext = useUserContext();
+  const { setIsLoggedIn } = userContext;
+  const navigate = useNavigate();
   const [passwordShow, setPasswordShow] = useState(false);
   const data = {
     email: "",
@@ -18,7 +22,7 @@ function Login() {
       .required("Required")
       .matches(
         /^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/,
-        "An Uppercase,Special symbol,Number,8 Characters Required"
+        "An Uppercase,Special symbol,Number,8 Characters Required",
       ),
   });
   return (
@@ -34,10 +38,17 @@ function Login() {
             validationSchema={validate}
             onSubmit={(values) => {
               console.log(values);
-              httpMethods.post("user/login", values).then((result) => {
-                console.log(result, "tokenResult");
-                setCookie(result.token, 2);
-              });
+              httpMethods
+                .post("/user/login", values)
+                .then((result) => {
+                  console.log(result, "tokenResult");
+                  setCookie(result.token, 2);
+                  setIsLoggedIn(true);
+                  navigate("/dashboard");
+                })
+                .catch((err) => {
+                  alert(err.message);
+                });
             }}
           >
             <Form>

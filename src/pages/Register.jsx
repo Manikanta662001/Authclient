@@ -22,7 +22,7 @@ function Register() {
       .required("Required")
       .matches(
         /^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/,
-        "An Uppercase,Special symbol,Number,8 Characters Required"
+        "An Uppercase,Special symbol,Number,8 Characters Required",
       ),
     cpassword: Yup.string()
       .required("Required")
@@ -45,7 +45,7 @@ function Register() {
             onSubmit={async (values) => {
               console.log(values, "REgisterval 11::");
               httpMethods
-                .post("user/register", values)
+                .post("/user/register", values)
                 .then((result) => {
                   console.log(result, "53");
                   alert(result.message);
