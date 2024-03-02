@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Errorpage() {
-  return (
-    <div>Page not Found</div>
-  )
+  return <div>Page not Found</div>;
 }
 
-export default Errorpage
+export default Errorpage;

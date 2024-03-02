@@ -32,7 +32,7 @@ function Header() {
     setAnchorEl(null);
     setCurrentUser({});
     setIsLoggedIn(false);
-    setCookie("",0);
+    setCookie("", 0);
   };
   return (
     <>
