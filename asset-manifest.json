@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/authapp/static/css/main.63cb151d.css",
+    "main.js": "/authapp/static/js/main.5a70ced0.js",
+    "index.html": "/authapp/index.html",
+    "main.63cb151d.css.map": "/authapp/static/css/main.63cb151d.css.map",
+    "main.5a70ced0.js.map": "/authapp/static/js/main.5a70ced0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.63cb151d.css",
+    "static/js/main.5a70ced0.js"
+  ]
+}
