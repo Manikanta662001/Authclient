@@ -1,13 +1,22 @@
 import { Token } from "../utils/Constatnts";
-const post = async (url, data) => {
+const post = async (url, data, name) => {
+  let headers;
+  let body;
+  if (name === "file_upload") {
+    headers = {};
+    body = data;
+  } else {
+    headers = {
+      "Content-Type": "application/json",
+    };
+    body = JSON.stringify(data);
+  }
+  headers = { ...headers, Authorization: Token() };
   try {
     const apiResponse = await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: Token(),
-      },
-      body: JSON.stringify(data),
+      headers: headers,
+      body: body,
     });
     const result = await apiResponse.json();
     if (!apiResponse.ok) {

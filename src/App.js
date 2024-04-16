@@ -22,7 +22,7 @@ function App() {
           path="/dashboard"
           element={isLoggedIn ? <Dashboard /> : <Navigate to={"/"} />}
         />
-        <Route path="*" element={<Errorpage/>}/>
+        <Route path="*" element={<Errorpage />} />
       </Routes>
     </div>
   );

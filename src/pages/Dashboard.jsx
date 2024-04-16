@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { httpMethods } from "../api/Service";
 import { useUserContext } from "../components/authContext/AuthContext";
-import man from "../assets/man.png";
 
 function Dashboard() {
   const userContext = useUserContext();
@@ -21,7 +20,11 @@ function Dashboard() {
     <div>
       <h1 style={{ textAlign: "center" }}>Welcome Mr. {currentUser?.name}</h1>
       <div style={{ width: "15%", margin: "auto" }}>
-        <img src={man} alt="img" style={{ width: "200px" }} />
+        <img
+          src={`/profile-imgs/${currentUser.profileimg}`}
+          alt="img"
+          style={{ width: "200px" }}
+        />
       </div>
     </div>
   );

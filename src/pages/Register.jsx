@@ -12,6 +12,7 @@ function Register() {
     email: "",
     password: "",
     cpassword: "",
+    profileimg: null,
   };
   const validate = Yup.object({
     name: Yup.string()
@@ -27,6 +28,7 @@ function Register() {
     cpassword: Yup.string()
       .required("Required")
       .oneOf([Yup.ref("password")], "Passwords are not matched "),
+    profileimg: Yup.mixed().required("Required"),
   });
   return (
     <>
@@ -42,10 +44,13 @@ function Register() {
           <Formik
             initialValues={data}
             validationSchema={validate}
-            onSubmit={async (values) => {
+            onSubmit={async (values, { setSubmitting }) => {
               console.log(values, "REgisterval 11::");
+              const formData = new FormData();
+              formData.append("file", values.profileimg);
+              formData.append("user", JSON.stringify(values));
               httpMethods
-                .post("/user/register", values)
+                .post("/user/register", formData, "file_upload")
                 .then((result) => {
                   console.log(result, "53");
                   alert(result.message);
@@ -53,79 +58,100 @@ function Register() {
                 .catch((error) => {
                   console.log(error, "000");
                   alert(error.message);
+                })
+                .finally(() => {
+                  setSubmitting(false);
                 });
             }}
           >
-            <Form>
-              <div className="form_input">
-                <label htmlFor="name">Name</label>
-                <Field
-                  type="text"
-                  name="name"
-                  id="name"
-                  placeholder="Enter your Name"
-                />
-                <p className="err_msg">
-                  <ErrorMessage name="name" />
-                </p>
-              </div>
-              <div className="form_input">
-                <label htmlFor="email">Email</label>
-                <Field
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Enter your Email Address"
-                />
-                <p className="err_msg">
-                  <ErrorMessage name="email" />
-                </p>
-              </div>
-              <div className="form_input">
-                <label htmlFor="password">Password</label>
-                <div className="two">
+            {({ setFieldValue }) => (
+              <Form>
+                <div className="form_input">
+                  <label htmlFor="name">Name</label>
                   <Field
-                    type={passwordShow ? "text" : "password"}
-                    name="password"
-                    id="password"
-                    placeholder="Enter your Password"
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Enter your Name"
                   />
-                  <div
-                    className="showpass"
-                    onClick={() => setPasswordShow(!passwordShow)}
-                  >
-                    {passwordShow ? "Hide" : "Show"}
-                  </div>
+                  <p className="err_msg">
+                    <ErrorMessage name="name" />
+                  </p>
                 </div>
-                <p className="err_msg">
-                  <ErrorMessage name="password" />
-                </p>
-              </div>
-              <div className="form_input">
-                <label htmlFor="cpassword">Confirm Password</label>
-                <div className="two">
+                <div className="form_input">
+                  <label htmlFor="email">Email</label>
                   <Field
-                    type={cpasswordShow ? "text" : "password"}
-                    name="cpassword"
-                    id="cpassword"
-                    placeholder="Enter Confirm Password"
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter your Email Address"
                   />
-                  <div
-                    className="showpass"
-                    onClick={() => setCPasswordShow(!cpasswordShow)}
-                  >
-                    {cpasswordShow ? "Hide" : "Show"}
-                  </div>
+                  <p className="err_msg">
+                    <ErrorMessage name="email" />
+                  </p>
                 </div>
-                <p className="err_msg">
-                  <ErrorMessage name="cpassword" />
+                <div className="form_input">
+                  <label htmlFor="password">Password</label>
+                  <div className="two">
+                    <Field
+                      type={passwordShow ? "text" : "password"}
+                      name="password"
+                      id="password"
+                      placeholder="Enter your Password"
+                    />
+                    <div
+                      className="showpass"
+                      onClick={() => setPasswordShow(!passwordShow)}
+                    >
+                      {passwordShow ? "Hide" : "Show"}
+                    </div>
+                  </div>
+                  <p className="err_msg">
+                    <ErrorMessage name="password" />
+                  </p>
+                </div>
+                <div className="form_input">
+                  <label htmlFor="cpassword">Confirm Password</label>
+                  <div className="two">
+                    <Field
+                      type={cpasswordShow ? "text" : "password"}
+                      name="cpassword"
+                      id="cpassword"
+                      placeholder="Enter Confirm Password"
+                    />
+                    <div
+                      className="showpass"
+                      onClick={() => setCPasswordShow(!cpasswordShow)}
+                    >
+                      {cpasswordShow ? "Hide" : "Show"}
+                    </div>
+                  </div>
+                  <p className="err_msg">
+                    <ErrorMessage name="cpassword" />
+                  </p>
+                </div>
+                <div className="form_input">
+                  <label htmlFor="profileimg">Profile Image</label>
+                  <Field
+                    type="file"
+                    name="profile-img"
+                    id="profileimg"
+                    onChange={(event) =>
+                      setFieldValue("profileimg", event.target.files[0])
+                    }
+                  />
+                  <p className="err_msg">
+                    <ErrorMessage name="profileimg" />
+                  </p>
+                </div>
+                <button className="btn" type="submit">
+                  Signup
+                </button>
+                <p>
+                  Already Have an Account? <NavLink to={"/"}>Login</NavLink>
                 </p>
-              </div>
-              <button className="btn">Signup</button>
-              <p>
-                Already Have an Account? <NavLink to={"/"}>Login</NavLink>
-              </p>
-            </Form>
+              </Form>
+            )}
           </Formik>
         </div>
       </section>
