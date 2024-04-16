@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/authapp/static/css/main.63cb151d.css",
-    "main.js": "/authapp/static/js/main.5a70ced0.js",
-    "index.html": "/authapp/index.html",
-    "main.63cb151d.css.map": "/authapp/static/css/main.63cb151d.css.map",
-    "main.5a70ced0.js.map": "/authapp/static/js/main.5a70ced0.js.map"
+    "main.css": "/AuthClient/static/css/main.63cb151d.css",
+    "main.js": "/AuthClient/static/js/main.8988b458.js",
+    "index.html": "/AuthClient/index.html",
+    "main.63cb151d.css.map": "/AuthClient/static/css/main.63cb151d.css.map",
+    "main.8988b458.js.map": "/AuthClient/static/js/main.8988b458.js.map"
   },
   "entrypoints": [
     "static/css/main.63cb151d.css",
-    "static/js/main.5a70ced0.js"
+    "static/js/main.8988b458.js"
   ]
 }
