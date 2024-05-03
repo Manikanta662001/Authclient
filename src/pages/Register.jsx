@@ -3,10 +3,13 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { NavLink } from "react-router-dom";
 import * as Yup from "yup";
 import { httpMethods } from "../api/Service";
+import Alert from "@mui/material/Alert";
 
 function Register() {
   const [passwordShow, setPasswordShow] = useState(false);
   const [cpasswordShow, setCPasswordShow] = useState(false);
+  const [apiStatus, setApiStatus] = useState({ sucssMsg: "", errMsg: "" });
+  const { sucssMsg, errMsg } = apiStatus;
   const data = {
     name: "",
     email: "",
@@ -45,22 +48,22 @@ function Register() {
             initialValues={data}
             validationSchema={validate}
             onSubmit={async (values, { setSubmitting }) => {
-              console.log(values, "REgisterval 11::");
               const formData = new FormData();
               formData.append("file", values.profileimg);
               formData.append("user", JSON.stringify(values));
               httpMethods
                 .post("/user/register", formData, "file_upload")
                 .then((result) => {
-                  console.log(result, "53");
-                  alert(result.message);
+                  setApiStatus({ ...apiStatus, sucssMsg: result.message });
                 })
                 .catch((error) => {
-                  console.log(error, "000");
-                  alert(error.message);
+                  setApiStatus({ ...apiStatus, errMsg: error.message });
                 })
                 .finally(() => {
                   setSubmitting(false);
+                  setTimeout(() => {
+                    setApiStatus({ ...apiStatus, sucssMsg: "", errMsg: "" });
+                  }, 4000);
                 });
             }}
           >
@@ -144,6 +147,8 @@ function Register() {
                     <ErrorMessage name="profileimg" />
                   </p>
                 </div>
+                {sucssMsg && <Alert severity="success">{sucssMsg}</Alert>}
+                {errMsg && <Alert severity="error">{errMsg}</Alert>}
                 <button className="btn" type="submit">
                   Signup
                 </button>
