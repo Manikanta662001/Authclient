@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Authclient/static/css/main.63cb151d.css",
-    "main.js": "/Authclient/static/js/main.50bf9276.js",
+    "main.js": "/Authclient/static/js/main.501a34dc.js",
     "index.html": "/Authclient/index.html",
     "main.63cb151d.css.map": "/Authclient/static/css/main.63cb151d.css.map",
-    "main.50bf9276.js.map": "/Authclient/static/js/main.50bf9276.js.map"
+    "main.501a34dc.js.map": "/Authclient/static/js/main.501a34dc.js.map"
   },
   "entrypoints": [
     "static/css/main.63cb151d.css",
-    "static/js/main.50bf9276.js"
+    "static/js/main.501a34dc.js"
   ]
 }
