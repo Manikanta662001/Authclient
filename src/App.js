@@ -27,5 +27,5 @@ function App() {
     </div>
   );
 }
-
+//in package.json file change "proxy":"https://localhost:5000" to check in local
 export default App;

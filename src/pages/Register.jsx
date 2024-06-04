@@ -47,7 +47,7 @@ function Register() {
           <Formik
             initialValues={data}
             validationSchema={validate}
-            onSubmit={async (values, { setSubmitting }) => {
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
               const formData = new FormData();
               formData.append("file", values.profileimg);
               formData.append("user", JSON.stringify(values));
@@ -55,6 +55,7 @@ function Register() {
                 .post("/user/register", formData, "file_upload")
                 .then((result) => {
                   setApiStatus({ ...apiStatus, sucssMsg: result.message });
+                  resetForm();
                 })
                 .catch((error) => {
                   setApiStatus({ ...apiStatus, errMsg: error.message });
