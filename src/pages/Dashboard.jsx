@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { httpMethods } from "../api/Service";
 import { useUserContext } from "../components/authContext/AuthContext";
+import { BE_URL } from "../utils/Constatnts";
 
 function Dashboard() {
   const userContext = useUserContext();
   const { setCurrentUser, setIsLoggedIn, currentUser } = userContext;
   useEffect(() => {
     httpMethods
-      .get("/get-user")
+      .get(BE_URL + "/get-user")
       .then((result) => {
         setCurrentUser(result);
         setIsLoggedIn(true);

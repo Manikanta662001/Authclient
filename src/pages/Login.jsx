@@ -6,6 +6,7 @@ import "./mix.css";
 import { httpMethods } from "../api/Service";
 import { setCookie } from "../utils/utils";
 import { useUserContext } from "../components/authContext/AuthContext";
+import { BE_URL } from "../utils/Constatnts";
 
 function Login() {
   const userContext = useUserContext();
@@ -22,7 +23,7 @@ function Login() {
       .required("Required")
       .matches(
         /^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/,
-        "An Uppercase,Special symbol,Number,8 Characters Required",
+        "An Uppercase,Special symbol,Number,8 Characters Required"
       ),
   });
   return (
@@ -39,7 +40,7 @@ function Login() {
             onSubmit={(values) => {
               console.log(values);
               httpMethods
-                .post("/user/login", values)
+                .post(BE_URL + "/user/login", values)
                 .then((result) => {
                   console.log(result, "tokenResult");
                   setCookie(result.token, 2);

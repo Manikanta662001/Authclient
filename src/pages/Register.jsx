@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import * as Yup from "yup";
 import { httpMethods } from "../api/Service";
 import Alert from "@mui/material/Alert";
+import { BE_URL } from "../utils/Constatnts";
 
 function Register() {
   const [passwordShow, setPasswordShow] = useState(false);
@@ -52,7 +53,7 @@ function Register() {
               formData.append("file", values.profileimg);
               formData.append("user", JSON.stringify(values));
               httpMethods
-                .post("/user/register", formData, "file_upload")
+                .post(BE_URL + "/user/register", formData, "file_upload")
                 .then((result) => {
                   setApiStatus({ ...apiStatus, sucssMsg: result.message });
                   resetForm();

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { httpMethods } from "../../api/Service";
+import { BE_URL } from "../../utils/Constatnts";
 
 const UserContext = createContext(null);
 
@@ -9,7 +10,7 @@ function AuthContext({ children }) {
   const alldata = { currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn };
   useEffect(() => {
     httpMethods
-      .get("/get-user")
+      .get(BE_URL + "/get-user")
       .then((result) => {
         setCurrentUser(result);
         setIsLoggedIn(true);

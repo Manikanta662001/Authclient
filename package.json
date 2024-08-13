@@ -2,7 +2,6 @@
   "name": "authclient",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://authserver-1-ljz5.onrender.com",
   "homepage": "/Authclient",
   "dependencies": {
     "@emotion/react": "^11.11.3",
