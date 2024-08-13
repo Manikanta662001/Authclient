@@ -47,7 +47,7 @@ function Login() {
                   navigate("/dashboard");
                 })
                 .catch((err) => {
-                  alert(err.message);
+                  throw new Error(err.message);
                 });
             }}
           >
