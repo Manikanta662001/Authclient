@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Authclient/static/css/main.63cb151d.css",
+    "main.js": "/Authclient/static/js/main.c1e2da41.js",
+    "index.html": "/Authclient/index.html",
+    "main.63cb151d.css.map": "/Authclient/static/css/main.63cb151d.css.map",
+    "main.c1e2da41.js.map": "/Authclient/static/js/main.c1e2da41.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.63cb151d.css",
+    "static/js/main.c1e2da41.js"
+  ]
+}
