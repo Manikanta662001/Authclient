@@ -14,8 +14,8 @@ function Login() {
   const navigate = useNavigate();
   const [passwordShow, setPasswordShow] = useState(false);
   const data = {
-    email: "",
-    password: "",
+    email: "gundlurimanikanta142@gmail.com",
+    password: "Mani@6620",
   };
   const validate = Yup.object({
     email: Yup.string().required("Required").email("Invalid Email Address"),
@@ -23,7 +23,7 @@ function Login() {
       .required("Required")
       .matches(
         /^(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$/,
-        "An Uppercase,Special symbol,Number,8 Characters Required"
+        "An Uppercase,Special symbol,Number,8 Characters Required",
       ),
   });
   return (
@@ -43,7 +43,8 @@ function Login() {
                 .post(BE_URL + "/user/login", values)
                 .then((result) => {
                   console.log(result, "tokenResult");
-                  setCookie(result.token, 2);
+                  setCookie("accessToken", result.accessToken);
+                  setCookie("refreshToken", result.refreshToken);
                   setIsLoggedIn(true);
                   navigate("/dashboard");
                 })

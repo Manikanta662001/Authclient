@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
-import { httpMethods } from "../api/Service";
+import { fetchWithAccessToken, httpMethods } from "../api/Service";
 import { useUserContext } from "../components/authContext/AuthContext";
 import { BE_URL } from "../utils/Constatnts";
 
 function Dashboard() {
   const userContext = useUserContext();
   const { setCurrentUser, setIsLoggedIn, currentUser } = userContext;
-  useEffect(() => {
-    httpMethods
-      .get(BE_URL + "/get-user")
-      .then((result) => {
-        setCurrentUser(result);
-        setIsLoggedIn(true);
+  const handleUserClick = (e) => {
+    e.preventDefault();
+    fetchWithAccessToken("get", BE_URL + "/userData")
+      .then((resp) => {
+        console.log("USER:::", resp);
       })
-      .catch((error) => {
-        alert(error.message);
+      .catch((err) => {
+        setCurrentUser({});
+        setIsLoggedIn(false);
       });
-  }, []);
+  };
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Welcome Mr. {currentUser?.name}</h1>
@@ -26,6 +26,7 @@ function Dashboard() {
           alt="img"
           style={{ width: "200px" }}
         />
+        <button onClick={(e) => handleUserClick(e)}>get User Data</button>
       </div>
     </div>
   );

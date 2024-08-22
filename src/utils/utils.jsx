@@ -1,12 +1,12 @@
-const setCookie = (token, hours) => {
-  let d = new Date();
-  d.setTime(d.getTime() + hours * 60 * 60000);
+const setCookie = (name, token, hours) => {
+  // let d = new Date();
+  // d.setTime(d.getTime() + hours * 60 * 60000);
   //syntax to set cookie
   //document.cookie = `${cookieName}=${cookieValue};expires=${d.toUTCString()};path=/`
-  document.cookie = `logincookie=${token};expires=${d.toUTCString()};path=/`;
+  document.cookie = `${name}=${token};path=/`;
 };
 
-const getTokenFromCookie = () => {
+const getTokenFromCookie = (tokenName) => {
   const getCookie = (cname) => {
     let totalCookie = document.cookie.split(";");
     let cnamecompare = totalCookie.find((c) => c.includes(cname));
@@ -17,7 +17,7 @@ const getTokenFromCookie = () => {
     return null;
   };
   const checkCookie = () => {
-    const user = getCookie("logincookie");
+    const user = getCookie(tokenName);
     if (user) {
       return user;
     } else {

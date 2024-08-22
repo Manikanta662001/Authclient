@@ -11,7 +11,6 @@ function Header() {
   const navigate = useNavigate();
   const { currentUser, isLoggedIn, setCurrentUser, setIsLoggedIn } =
     useUserContext();
-  console.log(currentUser, isLoggedIn, "88");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -32,7 +31,8 @@ function Header() {
     setAnchorEl(null);
     setCurrentUser({});
     setIsLoggedIn(false);
-    setCookie("", 0);
+    setCookie("accessToken");
+    setCookie("refreshToken");
   };
   return (
     <>
